@@ -1,6 +1,6 @@
 def solution(N, number):
     answer = -1
-    if number == N:
+    if number == N: # 55 N=55 1
         return 1
     dp = [set() for i in range(8)] #최대 8개까지, dp[1]= N 한 개 조합, dp[2]= N 두 개 조합
     #case1: 단일 숫자 조합(5 55 555 5555)
@@ -8,7 +8,7 @@ def solution(N, number):
         dp[i].add(int(str(N)*(i+1)))
     #case2: 사칙연산 조합, dp[i]는 dp[i-1], dp[i-2]... dp[0]에 저장된 숫자로 조합 가능
     for i in range(1, 8): #if i =1
-        for j in range(i): #j=0 
+        for j in range(i): #j=0
             for op1 in dp[j]: #dp[1]=5+5, 5-5, 5*5, 5//5, dp[2]=5+5+5, 5-5+5, 5-5*5..
                 for op2 in dp[i-j-1]:
                     dp[i].add(op1+op2)
