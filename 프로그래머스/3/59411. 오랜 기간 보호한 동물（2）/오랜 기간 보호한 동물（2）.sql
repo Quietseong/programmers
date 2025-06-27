@@ -1,0 +1,13 @@
+-- 코드를 입력하세요
+-- 입양간 동물 중, 보호기간이 가장 길었던 동물 두 마리의 아이디와 이름을 조회하기
+SELECT ANIMAL_ID, NAME
+FROM (
+    SELECT ANIMAL_ID, NAME, TIMESTAMPDIFF(DAY, ID, OD) AS DATEDIFF
+    FROM (
+        SELECT I.NAME, I.ANIMAL_ID, I.DATETIME ID, O.DATETIME OD
+        FROM ANIMAL_INS I
+        LEFT JOIN ANIMAL_OUTS O ON I.ANIMAL_ID = O.ANIMAL_ID
+    ) AS B
+    ORDER BY DATEDIFF DESC
+    LIMIT 2
+) A
